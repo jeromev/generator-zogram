@@ -1,11 +1,12 @@
 <!doctype html>
 <html class="no-js" lang="{{ page.lang }}">
   <head>
-    <meta charset="utf-8">
+    <meta charset="utf-8" />
     <title>{{ page.title }}</title>
-    <meta name="description" content="">
-    <meta name="viewport" content="width=device-width">
-    <link rel="shortcut icon" href="/favicon.ico">
+    <meta name="description" content="{{ page.description }}" />
+    <meta name="viewport" content="width=device-width" />
+    <meta http-equiv="cleartype" content="on" />
+    <link rel="shortcut icon" href="/favicon.ico" />
     <!-- build:css(.) styles/vendor.css -->
     <!-- bower:css -->
     
@@ -16,7 +17,9 @@
     <!-- endbuild -->
   </head>
   <body>
-    {{ body }}
+    <div class="inner">
+      {{ body }}
+    </div>
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
     <!-- build:js(.) scripts/vendor.js -->
     <!-- bower:js -->

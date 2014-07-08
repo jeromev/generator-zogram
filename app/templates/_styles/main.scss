@@ -1,29 +1,39 @@
 // bower:scss
 // endbower
 
+html, 
+body {
+  height: 100%;
+}
+
 body {
   background: #FFE2DD;
   font-family: Verdana, sans-serif;
   color: black;
 }
 
-.hero-unit {
-  margin: 50px auto 0 auto;
-  width: 300px;
-  font-size: 18px;
-  font-weight: 200;
-  line-height: 30px;
-  background-color: #FFC1F3;
-  border-radius: 100%;
-  padding: 30px;
-  box-shadow: .33em .33em 0 #E8A4AE;
-  transform: rotate(5deg);
-  h1 {
-    font-size: 90px;
-    line-height: 1;
-    text-align:center;
-    color: white;
-    text-shadow: .08em .08em 0 #E8A4AE;
-    transform: rotate(-10deg);
+body > .inner {
+  height: 100%;
+  &> section {
+    margin: 0 auto;
+    width: 300px;
+    font-size: 18px;
+    font-weight: 200;
+    line-height: 30px;
+    background-color: #FFC1F3;
+    border-radius: 100%;
+    padding: 30px;
+    box-shadow: .33em .33em 0 #E8A4AE;
+    transform: rotate(5deg) translateY(-30%);
+    position:relative;
+    top: 30%;
+    h1 {
+      font-size: 90px;
+      line-height: 1;
+      text-align:center;
+      color: white;
+      text-shadow: .08em .08em 0 #E8A4AE;
+      transform: rotate(-10deg);
+    }
   }
 }
