@@ -64,7 +64,8 @@ module.exports = function (grunt) {
           '<%%= config.app %>/{,*/}*.html',
           '.tmp/styles/{,*/}*.css',
           '<%%= config.app %>/images/{,*/}*'
-        ]
+        ],
+        tasks: ['assemble']
       }
     },
 
@@ -354,9 +355,34 @@ module.exports = function (grunt) {
         'imagemin',
         'svgmin'
       ]
+    },
+    
+    assemble: {
+      options: {
+        flatten: true,
+        layout: '<%%= config.app %>/templates/layouts/default.hbs',
+        partials: ['<%%= config.app %>/templates/partials/*.hbs'],
+      },
+      pages: {
+        files: {
+          '<%%= config.app %>/': [
+            '<%%= config.app %>/templates/pages/*.hbs',
+            '!<%%= config.app %>/templates/pages/index.hbs'
+          ]
+        }
+      },
+      index: {
+        files: {
+          '<%%= config.app %>/': [
+            '<%%= config.app %>/templates/pages/index.hbs'
+          ]
+        }
+      }
     }
+    
   });
-
+  
+  grunt.loadNpmTasks('assemble');
 
   grunt.registerTask('serve', 'start the server and preview your app, --allow-remote for remote access', function (target) {
     if (grunt.option('allow-remote')) {
@@ -399,6 +425,7 @@ module.exports = function (grunt) {
 
   grunt.registerTask('build', [
     'clean:dist',
+    'assemble',
     'wiredep',
     'useminPrepare',
     'concurrent:dist',
