@@ -10,4 +10,7 @@ $(document).ready(function() {
   // Add useragent attr (src: http://css-tricks.com/ie-10-specific-styles)
   html.attr('data-useragent', userAgent);
   
+  // Smooth scroll for internal links
+  $.localScroll();
+  
 });

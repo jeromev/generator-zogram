@@ -1,39 +1,64 @@
 // bower:scss
 // endbower
 
+//===============================================
+// IMPORTS
+//===============================================
+@import "init";
+@import "colors";
+//===============================================
+// HTML TREE
+//===============================================
 html, 
 body {
   height: 100%;
+  overflow: hidden;
 }
-
 body {
-  background: #FFE2DD;
+  background: linear-gradient(saturate(lighten($color-background, 6%), 20%), $color-background);
   font-family: Verdana, sans-serif;
-  color: black;
+  color: $color-text;
 }
-
-body > .inner {
-  height: 100%;
-  &> main {
+body >.inner {
+  top: 25%;
+  transform: rotate(5deg) translateY(-25%);
+  position:relative;
+  >main {
     margin: 0 auto;
     width: 300px;
     font-size: 18px;
     font-weight: 200;
     line-height: 30px;
-    background-color: #FFC1F3;
+    background-color: $color-bubble;
+    background: linear-gradient(saturate(lighten($color-bubble, 6%), 20%), $color-bubble);
     border-radius: 100%;
     padding: 30px;
-    box-shadow: .33em .33em 0 #E8A4AE;
-    transform: rotate(5deg) translateY(-30%);
-    position:relative;
-    top: 30%;
+    box-shadow: .33em .33em 0 $color-shadow;
+    animation: yo 1.334s infinite ease-out;
     h1 {
-      font-size: 90px;
+      font-size: 92px;
       line-height: 1;
       text-align:center;
       color: white;
-      text-shadow: .08em .08em 0 #E8A4AE;
-      transform: rotate(-10deg);
+      text-shadow: .08em .08em 0 $color-shadow;
+      animation: yo 0.667s infinite alternate backwards ease-out;
     }
+  }
+}
+//===============================================
+// ANIMATIONS
+//===============================================
+@keyframes yo {
+  0% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  90% {
+    transform: scale(1.334);
+    opacity: 0.9;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
   }
 }
