@@ -1,31 +1,39 @@
 <!doctype html>
-<html class="no-js" lang="{{ page.lang }}">
+<html class="no-js" lang="{{ lang }}">
   <head>
     <meta charset="utf-8" />
-    <title>{{ page.title }}</title>
-    <meta name="description" content="{{ page.description }}" />
+    <title>{{ title }}</title>
+    <meta name="description" content="{{ description }}" />
     <meta name="viewport" content="width=device-width" />
     <meta http-equiv="cleartype" content="on" />
     <link rel="shortcut icon" href="/favicon.ico" />
+    
     <!-- build:css(.) styles/vendor.css -->
     <!-- bower:css -->
     
     <!-- endbower -->
     <!-- endbuild -->
-    <!-- build:css(.tmp) styles/main.css -->
-    <link rel="stylesheet" href="styles/main.css">
+    
+    <!-- build:css(.) styles/main.css -->
+    <link rel="stylesheet" href="styles/main.css" />
     <!-- endbuild -->
   </head>
   <body>
     <div class="inner">
-      {{ body }}
+      {{> body }}
     </div>
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    
     <!-- build:js(.) scripts/vendor.js -->
     <!-- bower:js -->
+    
     <!-- endbower -->
     <!-- endbuild -->
-
+    
+    <!-- build:js(.tmp) scripts/main.js -->
+    <script src="scripts/main.js"></script>
+    <!-- endbuild -->
+    
     <!-- Google Analytics: change UA-XXXXX-X to be your site's ID. -->
     <script>
       (function(b,o,i,l,e,r){b.GoogleAnalyticsObject=l;b[l]||(b[l]=

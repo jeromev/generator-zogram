@@ -1,7 +1,11 @@
 ---
-title: <%= appname %>
+layout: default.hbs
 lang: en
+title: <%= appname %>
+description: Yo!
 ---
-<section>
-  <h1>Yo!</h1>
-</section>
+<main>
+{{#markdown}}
+{{> index}}
+{{/markdown}}
+</main>

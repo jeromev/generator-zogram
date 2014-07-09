@@ -8,7 +8,7 @@
 // If you want to recursively match all subfolders, use:
 // 'test/spec/**/*.js'
 
-module.exports = function (grunt) {
+module.exports = function(grunt) {
 
   // Time how long tasks take. Can help when optimizing build times
   require('time-grunt')(grunt);
@@ -19,8 +19,9 @@ module.exports = function (grunt) {
   // Configurable paths
   var config = {
     app: 'app',
-    dist: 'dist',
-    tmp: '.tmp'
+    build: 'build',
+    server: '.tmp',
+    content: 'content'
   };
 
   // Define the configuration for all the tasks
@@ -37,7 +38,7 @@ module.exports = function (grunt) {
       },
       js: {
         files: ['<%%= config.app %>/scripts/{,*/}*.js'],
-        tasks: ['jshint'],
+        tasks: ['jshint', 'newer:copy:js'],
         options: {
           livereload: true
         }
@@ -63,7 +64,7 @@ module.exports = function (grunt) {
         },
         files: [
           '<%%= config.app %>/templates/**/*.hbs',
-          '<%%= config.tmp %>/styles/{,*/}*.css',
+          '<%%= config.server %>/styles/{,*/}*.css',
           '<%%= config.app %>/images/{,*/}*'
         ],
         tasks: ['assemble:server']
@@ -77,13 +78,14 @@ module.exports = function (grunt) {
         open: true,
         livereload: 35729,
         // Change this to '0.0.0.0' to access the server from outside
-        hostname: 'localhost'
+        hostname: 'localhost',
+        debug: true
       },
       livereload: {
         options: {
           middleware: function(connect) {
             return [
-              connect.static('<%%= config.tmp %>'),
+              connect.static(config.server),
               connect().use('/bower_components', connect.static('./bower_components')),
               connect.static(config.app)
             ];
@@ -96,7 +98,7 @@ module.exports = function (grunt) {
           port: 9001,
           middleware: function(connect) {
             return [
-              connect.static(config.tmp),
+              connect.static(config.server),
               connect.static('test'),
               connect().use('/bower_components', connect.static('./bower_components')),
               connect.static(config.app)
@@ -104,9 +106,9 @@ module.exports = function (grunt) {
           }
         }
       },
-      dist: {
+      build: {
         options: {
-          base: '<%%= config.dist %>',
+          base: '<%%= config.build %>',
           livereload: false
         }
       }
@@ -114,17 +116,17 @@ module.exports = function (grunt) {
 
     // Empties folders to start fresh
     clean: {
-      dist: {
+      build: {
         files: [{
           dot: true,
           src: [
-            '<%%= config.tmp %>',
-            '<%%= config.dist %>/*',
-            '!<%%= config.dist %>/.git*'
+            '<%%= config.server %>',
+            '<%%= config.build %>/*',
+            '!<%%= config.build %>/.git*'
           ]
         }]
       },
-      server: '<%%= config.tmp %>'
+      server: '<%%= config.server %>'
     },
 
     // Make sure code styles are up to par and there are no obvious mistakes
@@ -164,12 +166,12 @@ module.exports = function (grunt) {
       options: {
         loadPath: 'bower_components'
       },
-      dist: {
+      build: {
         files: [{
           expand: true,
           cwd: '<%%= config.app %>/styles',
           src: ['*.{scss,sass}'],
-          dest: '<%%= config.tmp %>/styles',
+          dest: '<%%= config.server %>/styles',
           ext: '.css'
         }]
       },
@@ -178,7 +180,7 @@ module.exports = function (grunt) {
           expand: true,
           cwd: '<%%= config.app %>/styles',
           src: ['*.{scss,sass}'],
-          dest: '<%%= config.tmp %>/styles',
+          dest: '<%%= config.server %>/styles',
           ext: '.css'
         }]
       }
@@ -189,12 +191,12 @@ module.exports = function (grunt) {
       options: {
         browsers: ['> 1%', 'last 2 versions', 'Firefox ESR', 'Opera 12.1']
       },
-      dist: {
+      build: {
         files: [{
           expand: true,
-          cwd: '<%%= config.tmp %>/styles/',
+          cwd: '<%%= config.server %>/styles/',
           src: '{,*/}*.css',
-          dest: '<%%= config.tmp %>/styles/'
+          dest: '<%%= config.server %>/styles/'
         }]
       }
     },
@@ -202,8 +204,8 @@ module.exports = function (grunt) {
     // Automatically inject Bower components into the HTML file
     wiredep: {
       app: {
-        ignorePath: /^<%= config.app %>\/|\.\.\//,
-        src: ['<%%= config.tmp %>/index.html']
+        ignorePath: /^<%%= config.app %>\/|\.\.\//,
+        src: ['<%%= config.server %>/index.html']
       },
       sass: {
         src: ['<%%= config.app %>/styles/{,*/}*.{scss,sass}'],
@@ -213,14 +215,14 @@ module.exports = function (grunt) {
 
     // Renames files for browser caching purposes
     rev: {
-      dist: {
+      build: {
         files: {
           src: [
-            '<%%= config.dist %>/scripts/{,*/}*.js',
-            '<%%= config.dist %>/styles/{,*/}*.css',
-            '<%%= config.dist %>/images/{,*/}*.*',
-            '<%%= config.dist %>/fonts/{,*/}*.*',
-            '<%%= config.dist %>/*.{ico,png}'
+            '<%%= config.build %>/scripts/{,*/}*.js',
+            '<%%= config.build %>/styles/{,*/}*.css',
+            '<%%= config.build %>/images/{,*/}*.*',
+            '<%%= config.build %>/fonts/{,*/}*.*',
+            '<%%= config.build %>/*.{ico,png}'
           ]
         }
       }
@@ -231,45 +233,45 @@ module.exports = function (grunt) {
     // additional tasks can operate on them
     useminPrepare: {
       options: {
-        dest: '<%%= config.dist %>'
+        dest: '<%%= config.build %>'
       },
-      html: '<%%= config.tmp %>/index.html'
+      html: '<%%= config.server %>/index.html'
     },
 
     // Performs rewrites based on rev and the useminPrepare configuration
     usemin: {
       options: {
-        assetsDirs: ['<%%= config.dist %>', '<%%= config.dist %>/images']
+        assetsDirs: ['<%%= config.build %>', '<%%= config.build %>/images']
       },
-      html: ['<%%= config.tmp %>/{,*/}*.html'],
-      css: ['<%%= config.dist %>/styles/{,*/}*.css']
+      html: ['<%%= config.server %>/{,*/}*.html'],
+      css: ['<%%= config.build %>/styles/{,*/}*.css']
     },
 
-    // The following *-min tasks produce minified files in the dist folder
+    // The following *-min tasks produce minified files in the build folder
     imagemin: {
-      dist: {
+      build: {
         files: [{
           expand: true,
           cwd: '<%%= config.app %>/images',
           src: '{,*/}*.{gif,jpeg,jpg,png}',
-          dest: '<%%= config.dist %>/images'
+          dest: '<%%= config.build %>/images'
         }]
       }
     },
 
     svgmin: {
-      dist: {
+      build: {
         files: [{
           expand: true,
           cwd: '<%%= config.app %>/images',
           src: '{,*/}*.svg',
-          dest: '<%%= config.dist %>/images'
+          dest: '<%%= config.build %>/images'
         }]
       }
     },
 
     htmlmin: {
-      dist: {
+      build: {
         options: {
           collapseBooleanAttributes: true,
           collapseWhitespace: true,
@@ -282,21 +284,21 @@ module.exports = function (grunt) {
         },
         files: [{
           expand: true,
-          cwd: '<%%= config.tmp %>',
+          cwd: '<%%= config.server %>',
           src: '{,*/}*.html',
-          dest: '<%%= config.dist %>'
+          dest: '<%%= config.build %>'
         }]
       }
     },
 
     // Copies remaining files to places other tasks can use
     copy: {
-      dist: {
+      build: {
         files: [{
           expand: true,
           dot: true,
           cwd: '<%%= config.app %>',
-          dest: '<%%= config.dist %>',
+          dest: '<%%= config.build %>',
           src: [
             '*.{ico,png,txt}',
             '.htaccess',
@@ -310,8 +312,15 @@ module.exports = function (grunt) {
         expand: true,
         dot: true,
         cwd: '<%%= config.app %>/styles',
-        dest: '<%%= config.tmp %>/styles/',
+        dest: '<%%= config.server %>/styles/',
         src: '{,*/}*.css'
+      },
+      js: {
+        expand: true,
+        dot: true,
+        cwd: '<%%= config.app %>/scripts',
+        dest: '<%%= config.server %>/scripts/',
+        src: '{,*/}*.js'
       }
     },
 
@@ -319,14 +328,17 @@ module.exports = function (grunt) {
     concurrent: {
       server: [
         'sass:server',
-        'copy:styles'
+        'copy:styles',
+        'copy:js'
       ],
       test: [
-        'copy:styles'
+        'copy:styles',
+        'copy:js'
       ],
-      dist: [
+      build: [
         'sass',
         'copy:styles',
+        'copy:js',
         'imagemin',
         'svgmin'
       ]
@@ -335,18 +347,23 @@ module.exports = function (grunt) {
     assemble: {
       options: {
         flatten: true,
-        layout: '<%%= config.app %>/templates/layouts/default.hbs',
-        partials: ['<%%= config.app %>/templates/partials/*.hbs'],
+        layoutdir: './<%%= config.app %>/templates/layouts',
+        partials: [
+          './<%%= config.app %>/templates/partials/*.hbs',
+          './<%%= config.content %>/*.md'
+        ],
       },
       server: {
-        files: {
-          '<%%= config.tmp %>/': ['<%%= config.app %>/templates/pages/*.hbs']
-        }
+        cwd: './<%%= config.app %>/templates/pages/',
+        expand: true,
+        src: ['**/*.hbs'],
+        dest: './<%%= config.server %>/'
       },
-      dist: {
-        files: {
-          '<%%= config.dist %>/': ['<%%= config.app %>/templates/pages/*.hbs']
-        }
+      build: {
+        cwd: './<%%= config.app %>/templates/pages/',
+        expand: true,
+        src: ['**/*.hbs'],
+        dest: './<%%= config.build %>/'
       }
     }
     
@@ -358,8 +375,8 @@ module.exports = function (grunt) {
     if (grunt.option('allow-remote')) {
       grunt.config.set('connect.options.hostname', '0.0.0.0');
     }
-    if (target === 'dist') {
-      return grunt.task.run(['build', 'connect:dist:keepalive']);
+    if (target === 'build') {
+      return grunt.task.run(['build', 'connect:build:keepalive']);
     }
 
     grunt.task.run([
@@ -395,16 +412,16 @@ module.exports = function (grunt) {
   });
 
   grunt.registerTask('build', [
-    'clean:dist',
+    'clean:build',
     'assemble:server',
     'wiredep',
     'useminPrepare',
-    'concurrent:dist',
+    'concurrent:build',
     'autoprefixer',
     'concat',
     'cssmin',
     'uglify',
-    'copy:dist',
+    'copy:build',
     'rev',
     'usemin',
     'htmlmin'

@@ -48,21 +48,14 @@ module.exports = yeoman.generators.Base.extend({
   jshint: function() {
     this.copy('_jshintrc', '.jshintrc');
   },
-  
-  htaccess: function() {
-    
-  },
-  
-  favicon: function() {
-    this.copy('_favicon.ico', 'app/favicon.ico');
-  },
-  
-  robots: function() {
-    this.copy('_robots.txt', 'app/robots.txt');
-  },
 
   editorConfig: function() {
     this.copy('_editorconfig', '.editorconfig');
+  },
+  
+  content: function() {
+    this.mkdir('content');
+    this.copy('_content/index.md', 'content/index.md');
   },
   
   writeIndex: function() {
@@ -74,14 +67,6 @@ module.exports = yeoman.generators.Base.extend({
       this.readFileAsString(join(this.sourceRoot(), '_pages/index.hbs')),
       this
     );
-
-    this.layoutFile = this.appendFiles({
-      html: this.layoutFile,
-      fileType: 'js',
-      optimizedPath: 'scripts/main.js',
-      sourceFileList: ['scripts/main.js'],
-      searchPath: '.tmp'
-    });
   },
 
   app: function() {
@@ -99,6 +84,8 @@ module.exports = yeoman.generators.Base.extend({
     this.write('app/scripts/main.js', 'console.log(\'Yo!\');');
     
     this.copy('_htaccess', 'app/.htaccess');
+    this.copy('_favicon.ico', 'app/favicon.ico');
+    this.copy('_robots.txt', 'app/robots.txt');
     this.copy('_styles/main.scss', 'app/styles/main.scss');
     this.copy('_pages/404.hbs', 'app/templates/pages/404.hbs');
   },
