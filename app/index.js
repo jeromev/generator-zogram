@@ -72,6 +72,7 @@ module.exports = yeoman.generators.Base.extend({
   app: function() {
     this.mkdir('app');
     this.mkdir('app/scripts');
+    this.mkdir('app/styles');
     this.mkdir('app/fonts');
     this.mkdir('app/images');
     this.mkdir('app/templates');
@@ -81,12 +82,12 @@ module.exports = yeoman.generators.Base.extend({
     
     this.write('app/templates/layouts/default.hbs', this.layoutFile);
     this.write('app/templates/pages/index.hbs', this.indexFile);
-    this.write('app/scripts/main.js', 'console.log(\'Yo!\');');
     
     this.copy('_htaccess', 'app/.htaccess');
     this.copy('_favicon.ico', 'app/favicon.ico');
     this.copy('_robots.txt', 'app/robots.txt');
     this.copy('_styles/main.scss', 'app/styles/main.scss');
+    this.copy('_scripts/main.js', 'app/scripts/main.js');
     this.copy('_pages/404.hbs', 'app/templates/pages/404.hbs');
   },
 

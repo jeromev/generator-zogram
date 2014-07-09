@@ -241,7 +241,10 @@ module.exports = function(grunt) {
     // Performs rewrites based on rev and the useminPrepare configuration
     usemin: {
       options: {
-        assetsDirs: ['<%%= config.build %>', '<%%= config.build %>/images']
+        assetsDirs: [
+          '<%%= config.build %>', 
+          '<%%= config.build %>/images'
+        ]
       },
       html: ['<%%= config.server %>/{,*/}*.html'],
       css: ['<%%= config.build %>/styles/{,*/}*.css']
@@ -328,16 +331,13 @@ module.exports = function(grunt) {
     concurrent: {
       server: [
         'sass:server',
-        'copy:styles',
         'copy:js'
       ],
       test: [
-        'copy:styles',
         'copy:js'
       ],
       build: [
-        'sass',
-        'copy:styles',
+        'sass:build',
         'copy:js',
         'imagemin',
         'svgmin'
