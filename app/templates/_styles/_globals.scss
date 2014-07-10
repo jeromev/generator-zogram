@@ -5,9 +5,9 @@ $color-shadow: rgb(253,68,100);
 
 // BASELINE VARS
 $base-font-size: 16px;
-$base-cap-ratio: 0.53;
-$base-line-ratio: 1.618;
-$base-scale: 2;
+$base-cap-ratio: 0.53; // this value is to be used with Fira webfont
+$base-line-ratio: 1.618; // golden ratio
+$base-scale: 2; 
 
 // BASELINE CALC
 $base-line-height: $base-font-size * $base-line-ratio;

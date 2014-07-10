@@ -59,17 +59,17 @@ module.exports = function(grunt) {
         tasks: ['newer:copy:styles', 'autoprefixer']
       },
       assemble: {
-        files: ['<%= config.app %>/templates/**/*.hbs'],
+        files: ['<%%= config.app %>/templates/**/*.hbs'],
         tasks: ['assemble:server']
       },
       livereload: {
         options: {
-          livereload: '<%= connect.options.livereload %>'
+          livereload: '<%%= connect.options.livereload %>'
         },
         files: [
-          '<%= config.server %>/{,*/}*.html',
-          '<%= config.server %>/styles/{,*/}*.css',
-          '<%= config.app %>/images/{,*/}*'
+          '<%%= config.server %>/{,*/}*.html',
+          '<%%= config.server %>/styles/{,*/}*.css',
+          '<%%= config.app %>/images/{,*/}*'
         ]
       }
     },

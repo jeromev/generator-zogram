@@ -2,7 +2,7 @@
 // RULES
 //===============================================
 html, body {
-  -webkitfont-smoothing: antialiased;
+  font-smoothing: subpixel-antialiased;
   text-rendering: optimizeLegibility;
 }
 q:before { content: open-quote; }
@@ -28,13 +28,13 @@ q:after { content: close-quote; }
 //···············································
 // based on a gist by Razvan Onofrei: https://gist.github.com/razwan/10662500
 // see https://gist.github.com/jeromev/11301969
-@mixin show-baseline($unit: $base-unit, $color: rgba(0, 0, 0, 0.1)) {
+@mixin show-baseline($unit: $base-unit, $color: rgba(0, 0, 0, 0.1667)) {
   background-image: linear-gradient(
     to bottom, 
-    $color 6%, 
-    transparent 6%
+    $color 0%, 
+    transparent 20%
   );
-  background-size: 100% $base-unit;
+  background-size: 100% rem($base-unit);
   background-position: left top;
 }
 @mixin align-to-baseline($font-size: $base-font-size, $offset-top: 0, $offset-bottom: 0, $method: 2, $scale: $base-scale) {
@@ -60,8 +60,9 @@ q:after { content: close-quote; }
 	  padding-bottom: rem($offset-bottom);
 	}
 	// METHOD 2
-	// Use this mixin only on elements that have one direction margins
-	// http://csswizardry.com/2012/06/single-direction-margin-declarations
+	// if you use this mixin only on elements that have one direction margins
+	// http://csswizardry.com/2012/06/single-direction-margin-declarations/
+	// you can use this method with no worries. 
 	@if ($method == 2) {
     padding-top: rem($baseline-distance * $font-size + $offset-top);
     margin-bottom: rem(($line-height - $baseline-distance) * $font-size - $base-unit + $offset-bottom);
