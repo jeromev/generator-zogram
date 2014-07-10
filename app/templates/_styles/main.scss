@@ -20,7 +20,7 @@ body {
   color: $color-text;
   font-size: $base-font-size;
   line-height: $base-line-ratio + em;
-  @include show-baseline($base-unit);
+  @include show-baseline();
   >.inner {
     max-width: gutter-h(32);
     margin: 0 auto;
@@ -51,7 +51,7 @@ main {
     @include align-to-baseline();
   }
   blockquote.highlight p {
-    @include align-to-baseline(30px, 0, -1);
+    @include align-to-baseline(28px, 0, -1);
     font-weight: 300;
   }
 }
