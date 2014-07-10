@@ -1,10 +1,21 @@
+//===============================================
+// IMPORTS
+//===============================================
+@import "globals";
+@import "typography";
+
+//===============================================
+// RULES
+//===============================================
 * {
-   box-sizing: border-box;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
-html, body {
-  -webkitfont-smoothing: antialiased;
-  text-rendering: optimizeLegibility;
-}
+
+//===============================================
+// MIXINS
+//===============================================
 @mixin clearfix() {
   *zoom:1;    
   &:before, 
@@ -15,4 +26,24 @@ html, body {
   &:after {
     clear:both;
   }
+}
+@mixin hide() {
+  position: absolute;
+  height: 1px;
+  width: 1px;
+  overflow: hidden;
+  clip: rect(1px, 1px, 1px, 1px);
+}
+@mixin hide-off($position: static) {
+  position: $position;
+  clip: auto;
+  height: auto;
+  width: auto;
+  overflow: auto;
+}
+@function em($px: 0, $font-size: $base-font-size) {
+  @return $px / $font-size + em;
+}
+@function rem($px: 0) {
+  @return $px / $base-font-size + rem;
 }

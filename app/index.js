@@ -92,7 +92,8 @@ module.exports = yeoman.generators.Base.extend({
     
     this.copy('_styles/main.scss', 'app/styles/main.scss');
     this.copy('_styles/_init.scss', 'app/styles/_init.scss');
-    this.copy('_styles/_colors.scss', 'app/styles/_colors.scss');
+    this.copy('_styles/_globals.scss', 'app/styles/_globals.scss');
+    this.copy('_styles/_typography.scss', 'app/styles/_typography.scss');
     
     this.copy('_scripts/main.js', 'app/scripts/main.js');
     this.copy('_pages/404.hbs', 'app/templates/pages/404.hbs');

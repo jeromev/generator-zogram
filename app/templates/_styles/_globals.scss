@@ -1,0 +1,14 @@
+// COLORS
+$color-background: rgb(255,255,255);
+$color-text: rgb(0,0,0);
+$color-shadow: rgb(253,68,100);
+
+// BASELINE VARS
+$base-font-size: 16px;
+$base-cap-ratio: 0.77;
+$base-line-ratio: 1.618;
+$base-scale: 2;
+
+// BASELINE CALC
+$base-line-height: $base-font-size * $base-line-ratio;
+$base-unit: $base-font-size * $base-line-ratio / $base-scale;

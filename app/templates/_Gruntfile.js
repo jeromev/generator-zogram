@@ -58,16 +58,19 @@ module.exports = function(grunt) {
         files: ['<%%= config.app %>/styles/{,*/}*.css'],
         tasks: ['newer:copy:styles', 'autoprefixer']
       },
+      assemble: {
+        files: ['<%= config.app %>/templates/**/*.hbs'],
+        tasks: ['assemble:server']
+      },
       livereload: {
         options: {
-          livereload: '<%%= connect.options.livereload %>'
+          livereload: '<%= connect.options.livereload %>'
         },
         files: [
-          '<%%= config.app %>/templates/**/*.hbs',
-          '<%%= config.server %>/styles/{,*/}*.css',
-          '<%%= config.app %>/images/{,*/}*'
-        ],
-        tasks: ['assemble:server']
+          '<%= config.server %>/{,*/}*.html',
+          '<%= config.server %>/styles/{,*/}*.css',
+          '<%= config.app %>/images/{,*/}*'
+        ]
       }
     },
 
