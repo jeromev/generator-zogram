@@ -40,9 +40,10 @@ module.exports = yeoman.generators.Base.extend({
       dependencies: {
         'normalize-css': "~3.0.1",
         'normalize-opentype.css': "~0.1.2",
-        "jquery": "~1.11.0",
+        'jquery': "~1.11.0",
         'jquery.scrollTo': "~1.4.12",
-        'jquery.localScroll': "~1.3.5"
+        'jquery.localScroll': "~1.3.5",
+        'letteringjs': "~0.6.1"
       }
     };
     this.write('bower.json', JSON.stringify(bower, null, 2));

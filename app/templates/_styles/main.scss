@@ -15,11 +15,12 @@ body {
 }
 body {
   background: $color-background;
-  font-family: Verdana, sans-serif;
+  font-family: 'Fira Sans', Verdana, sans-serif;
+  font-weight: 400;
   color: $color-text;
   font-size: $base-font-size;
   line-height: $base-line-ratio + em;
-  @include show-baseline($base-unit, rgba(0, 0, 0, 0.2));
+  @include show-baseline($base-unit);
   >.inner {
     max-width: gutter-h(32);
     margin: 0 auto;
@@ -27,12 +28,32 @@ body {
 }
 main {
   padding: 0 gutter-h();
-}
-h1 {
-  @include snap-to-baseline(100px, 0, -6);
-}
-p {
-  @include snap-to-baseline();
+  h1 {
+    @include align-to-baseline(99px, 0, -5);
+    position: relative;
+    font-weight: 500;
+    left: -0.11em;
+    letter-spacing: -0.01em;
+    text-transform: lowercase;
+    .char1 {
+      margin-right: 0.02em;
+    }
+    .char2 {
+      margin-right: 0.015em;
+    }
+    .char4 {
+      transform: rotate(10deg) translateY(0.01em);
+      display: inline-block;
+      margin-left: 0.04em;
+    }
+  }
+  p {
+    @include align-to-baseline();
+  }
+  blockquote.highlight p {
+    @include align-to-baseline(30px, 0, -1);
+    font-weight: 300;
+  }
 }
 
 

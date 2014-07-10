@@ -9,20 +9,26 @@ q:before { content: open-quote; }
 q:after { content: close-quote; }
 :lang(en) q { quotes: '“' '”'; }
 :lang(fr) q { quotes: '«' '»'; }
+
 //===============================================
 // MIXINS
 //===============================================
 
+//···············································
+// Gutter
+//···············································
 @function gutter-h($q: 1) {
   @return rem($q * $base-unit * 1.1666);
 }
 @function gutter-v($q: 1) {
   @return rem($q * $base-unit);
 }
-
+//···············································
+// Baseline
+//···············································
 // based on a gist by Razvan Onofrei: https://gist.github.com/razwan/10662500
 // see https://gist.github.com/jeromev/11301969
-@mixin show-baseline($unit: $base-unit, $color: rgb(0,0,0)) {
+@mixin show-baseline($unit: $base-unit, $color: rgba(0, 0, 0, 0.1)) {
   background-image: linear-gradient(
     to bottom, 
     $color 6%, 
@@ -31,11 +37,9 @@ q:after { content: close-quote; }
   background-size: 100% $base-unit;
   background-position: left top;
 }
-@mixin snap-to-baseline($font-size: $base-font-size, $offset-top: 0, $offset-bottom: 0, $method: 2, $scale: $base-scale) {
-  // number (float) of base units that can fit the font-size
-  $lines-float: $font-size / $base-unit;
-	// calc next integer
-	$lines: ceil($lines-float);
+@mixin align-to-baseline($font-size: $base-font-size, $offset-top: 0, $offset-bottom: 0, $method: 2, $scale: $base-scale) {
+  // number (integer) of base units that can fit the font-size
+  $lines: ceil($font-size / $base-unit);
 	// calculate the new line-height
 	$line-height: $base-unit * $lines / $font-size;
   @if ($font-size != $base-font-size) {
@@ -56,21 +60,25 @@ q:after { content: close-quote; }
 	  padding-bottom: rem($offset-bottom);
 	}
 	// METHOD 2
-	// if you use this mixin only on elements that have one direction margins
-	// http://csswizardry.com/2012/06/single-direction-margin-declarations/
-	// you can use this method with no worries. 
+	// Use this mixin only on elements that have one direction margins
+	// http://csswizardry.com/2012/06/single-direction-margin-declarations
 	@if ($method == 2) {
     padding-top: rem($baseline-distance * $font-size + $offset-top);
     margin-bottom: rem(($line-height - $baseline-distance) * $font-size - $base-unit + $offset-bottom);
   }
 }
-
+//···············································
+// Small caps
+//···············································
 @mixin smallcaps() {
   font-size: 0.80em;
   font-weight: bolder;
   text-transform: uppercase;
   letter-spacing: 0.05em;
 }
+//···············································
+// Drop caps
+//···············································
 @mixin dropcap() {
   float:left;
   font-size: 5.18em;
