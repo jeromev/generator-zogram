@@ -245,7 +245,7 @@ module.exports = function(grunt) {
     usemin: {
       options: {
         assetsDirs: [
-          '<%%= config.build %>', 
+          '<%%= config.build %>',
           '<%%= config.build %>/images'
         ]
       },
