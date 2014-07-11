@@ -29,10 +29,10 @@ body {
 main {
   padding: 0 grid-units-h();
   h1 {
-    @include align-to-baseline(110px, 0, -5);
+    @include align-to-baseline(120px, 0, -5);
     position: relative;
     font-weight: 500;
-    left: -0.1em;
+    left: -0.075em;
     letter-spacing: -0.01em;
     text-transform: lowercase;
     .char1 {
@@ -51,7 +51,7 @@ main {
     @include align-to-baseline();
   }
   blockquote.highlight p {
-    @include align-to-baseline(25px);
+    @include align-to-baseline(32px);
     font-weight: 300;
   }
 }
