@@ -22,36 +22,36 @@ body {
   line-height: $base-line-ratio + em;
   @include show-baseline();
   >.inner {
-    max-width: gutter-h(32);
+    max-width: em(grid-units-h(30));
     margin: 0 auto;
   }
 }
 main {
-  padding: 0 gutter-h();
+  padding: 0 grid-units-h();
   h1 {
-    @include align-to-baseline(99px, 0, -5);
+    @include align-to-baseline(110px, 0, -5);
     position: relative;
     font-weight: 500;
-    left: -0.11em;
+    left: -0.1em;
     letter-spacing: -0.01em;
     text-transform: lowercase;
     .char1 {
-      margin-right: 0.02em;
+      margin-right: 0.01em;
     }
     .char2 {
-      margin-right: 0.015em;
+      margin-right: 0.007em;
     }
     .char4 {
       transform: rotate(10deg) translateY(0.01em);
       display: inline-block;
-      margin-left: 0.04em;
+      margin-left: 0.05em;
     }
   }
   p {
     @include align-to-baseline();
   }
   blockquote.highlight p {
-    @include align-to-baseline(28px, 0, -1);
+    @include align-to-baseline(25px);
     font-weight: 300;
   }
 }

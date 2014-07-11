@@ -5,67 +5,76 @@ html, body {
   font-smoothing: subpixel-antialiased;
   text-rendering: optimizeLegibility;
 }
-q:before { content: open-quote; }
-q:after { content: close-quote; }
+q {
+  &:before {
+    content: open-quote; 
+  }
+  &:after { 
+    content: close-quote; 
+  }
+}
 :lang(en) q { quotes: '“' '”'; }
 :lang(fr) q { quotes: '«' '»'; }
+
+p {
+  hyphens: auto;
+}
 
 //===============================================
 // MIXINS
 //===============================================
 
 //···············································
-// Gutter
+// Grid
 //···············································
-@function gutter-h($q: 1) {
-  @return rem($q * $base-unit * 1.1666);
+@function grid-units-h($q: 1) {
+  @return $q * $base-unit * 1.1667; // px
 }
-@function gutter-v($q: 1) {
-  @return rem($q * $base-unit);
+@function grid-units-v($q: 1) {
+  @return $q * $base-unit; // px
 }
 //···············································
 // Baseline
 //···············································
 // based on a gist by Razvan Onofrei: https://gist.github.com/razwan/10662500
 // see https://gist.github.com/jeromev/11301969
-@mixin show-baseline($unit: $base-unit, $color: rgba(0, 0, 0, 0.1667)) {
+@mixin show-baseline($color: rgba(0, 0, 0, 0.1667)) {
   background-image: linear-gradient(
     to bottom, 
     $color 0%, 
     transparent 20%
   );
-  background-size: 100% rem($base-unit);
+  background-size: 100% $base-unit;
   background-position: left top;
 }
 @mixin align-to-baseline($font-size: $base-font-size, $offset-top: 0, $offset-bottom: 0, $method: 2, $scale: $base-scale) {
   // number (integer) of base units that can fit the font-size
   $lines: ceil($font-size / $base-unit);
 	// calculate the new line-height
-	$line-height: $base-unit * $lines / $font-size;
+	$line-height: $base-unit * $lines / $font-size;  // (em)
   @if ($font-size != $base-font-size) {
     // print the results
-	  font-size: rem($font-size);
-	  line-height: $line-height + em; 
+	  font-size: ($font-size / $base-font-size) + em;
+	  line-height: $line-height + em;
   }
-	$baseline-distance: ($line-height - $base-cap-ratio) / $scale;
+	$baseline-distance: ($line-height - $base-cap-ratio) / $scale;  // (em)
 	
-	$offset-top: $offset-top * $base-unit;
-	$offset-bottom: $offset-bottom * $base-unit;
+	$offset-top: $offset-top * $base-unit / $font-size;  // (em)
+	$offset-bottom: $offset-bottom * $base-unit / $font-size;  // (em)
 	
 	// METHOD 1
 	// this method can relatively move down elements you may not want to
 	@if ($method == 1) {
 	  position: relative;
-	  top: rem($baseline-distance * $font-size + $offset-top);
-	  padding-bottom: rem($offset-bottom);
+	  top: $baseline-distance + $offset-top + em;
+	  padding-bottom: $offset-bottom + em;
 	}
 	// METHOD 2
-	// if you use this mixin only on elements that have one direction margins
-	// http://csswizardry.com/2012/06/single-direction-margin-declarations/
-	// you can use this method with no worries. 
+	// use this mixin only on elements that have one direction margins
+	// http://csswizardry.com/2012/06/single-direction-margin-declarations
 	@if ($method == 2) {
-    padding-top: rem($baseline-distance * $font-size + $offset-top);
-    margin-bottom: rem(($line-height - $baseline-distance) * $font-size - $base-unit + $offset-bottom);
+    padding-top: $baseline-distance + $offset-top + em;
+    margin-bottom: $line-height - $baseline-distance - $base-unit / $font-size + $offset-bottom + em;
   }
 }
 //···············································
