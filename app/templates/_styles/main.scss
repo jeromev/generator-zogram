@@ -20,7 +20,7 @@ body {
   color: $color-text;
   font-size: $base-font-size;
   line-height: $base-line-ratio + em;
-  @include show-baseline();
+  //@include show-baseline();
   >.inner {
     max-width: em(grid-units-h(30));
     margin: 0 auto;
