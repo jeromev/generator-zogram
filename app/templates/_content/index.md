@@ -3,7 +3,7 @@ Yeo!
 
 >In the late 14th to 18th centuries, yeomen were farmers who owned land (freehold, leasehold or copyhold). Their wealth and the size of their landholding varied. Often it was hard to distinguish minor landed gentry from the wealthier yeomen, and wealthier husbandmen from the poorer yeomen.
 
-<blockquote class="highlight"><p>A Yeoman is one step down from the Landed Gentry, but above, say, a husbandman.</p></blockquote>
+<blockquote class="highlight"><p>A Yeoman is one step down from the Landed Gentry but above a husbandman.</p></blockquote>
 
 >Sir Anthony Richard Wagner, Garter Principal King of Arms, wrote that “a Yeoman would not normally have less than 100 acres” (40 hectares) “and in social status is one step down from the Landed Gentry, but above, say, a husbandman.” (Wagner 1960: 125–30)
 
