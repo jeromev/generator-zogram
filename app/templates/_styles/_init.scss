@@ -2,7 +2,7 @@
 // IMPORTS
 //===============================================
 @import "globals";
-@import "typography";
+@import "utilities";
 
 //===============================================
 // RULES
@@ -12,10 +12,26 @@
   margin: 0;
   padding: 0;
 }
+html, body {
+  font-smoothing: subpixel-antialiased;
+  text-rendering: optimizeLegibility;
+}
 h1,h2,h3,h4,h5,h6,p{
   margin:0;
 }
-
+q {
+  &:before {
+    content: open-quote; 
+  }
+  &:after { 
+    content: close-quote; 
+  }
+}
+:lang(en) q { quotes: '“' '”'; }
+:lang(fr) q { quotes: '«' '»'; }
+p {
+  hyphens: auto;
+}
 //===============================================
 // MIXINS
 //===============================================

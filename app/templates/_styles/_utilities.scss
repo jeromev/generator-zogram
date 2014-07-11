@@ -1,0 +1,28 @@
+//===============================================
+// MIXINS
+//===============================================
+
+//···············································
+// Small caps
+//···············································
+@mixin smallcaps() {
+  font-size: 0.80em;
+  font-weight: bolder;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+//···············································
+// Drop caps
+//···············································
+@mixin dropcap() {
+  float:left;
+  font-size: 5.18em;
+  font-weight: 300;
+  line-height: 0.9em;
+  padding: 0 .12em 0 0;
+  position: relative;
+  left: -0.2em;
+  margin-top: 0.1em;
+  margin-left: -0.08em;
+  margin-bottom: -0.1em;
+}

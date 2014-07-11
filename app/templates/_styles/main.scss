@@ -2,9 +2,17 @@
 // endbower
 
 //===============================================
+// SETUP
+//===============================================
+$base-font-size: 18px;
+$base-line-height: 1.65;
+$base-cap-height: 0.53;
+
+//===============================================
 // IMPORTS
 //===============================================
 @import "init";
+@import "grid";
 
 //===============================================
 // HTML TREE
@@ -19,7 +27,7 @@ body {
   font-weight: 400;
   color: $color-text;
   font-size: $base-font-size;
-  line-height: $base-line-ratio + em;
+  line-height: $base-line-height + em;
   //@include show-baseline();
   >.inner {
     max-width: em(grid-units-h(30));
