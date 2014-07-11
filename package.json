@@ -1,6 +1,6 @@
 {
   "name": "generator-zogram",
-  "version": "0.2.7",
+  "version": "0.2.8",
   "description": "Based on the Yeoman webapp generator. Includes Sass, Assemble, and some useful front-end components.",
   "license": "MIT",
   "main": "app/index.js",
