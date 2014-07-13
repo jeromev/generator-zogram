@@ -40,6 +40,7 @@ module.exports = yeoman.generators.Base.extend({
       dependencies: {
         'normalize-css': "~3.0.1",
         'normalize-opentype.css': "~0.1.2",
+        'grid.scss': "*",
         'jquery': "~1.11.0",
         'jquery.scrollTo': "~1.4.12",
         'jquery.localScroll': "~1.3.5",
@@ -94,7 +95,6 @@ module.exports = yeoman.generators.Base.extend({
     this.copy('_styles/main.scss', 'app/styles/main.scss');
     this.copy('_styles/_init.scss', 'app/styles/_init.scss');
     this.copy('_styles/_globals.scss', 'app/styles/_globals.scss');
-    this.copy('_styles/_grid.scss', 'app/styles/_grid.scss');
     this.copy('_styles/_utilities.scss', 'app/styles/_utilities.scss');
     
     this.copy('_scripts/main.js', 'app/scripts/main.js');

@@ -1,4 +1,11 @@
+//===============================================
+// IMPORTS
+//===============================================
+
+@import "init";
+
 // bower:scss
+@import "grid.scss/grid.scss";
 // endbower
 
 //===============================================
@@ -7,12 +14,6 @@
 $base-font-size: 18px;
 $base-line-height: 1.65;
 $base-cap-height: 0.53;
-
-//===============================================
-// IMPORTS
-//===============================================
-@import "init";
-@import "grid";
 
 //===============================================
 // HTML TREE
@@ -41,7 +42,7 @@ main {
     position: relative;
     font-weight: 500;
     left: -0.075em;
-    letter-spacing: -0.01em;
+    letter-spacing: -0.02em;
     text-transform: lowercase;
     .char1 {
       margin-right: 0.01em;
