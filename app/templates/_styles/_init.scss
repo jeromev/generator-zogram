@@ -60,9 +60,3 @@ p {
   width: auto;
   overflow: auto;
 }
-@function em($px: 0, $font-size: $base-font-size) {
-  @return $px / $font-size + em;
-}
-@function rem($px: 0) {
-  @return $px / $base-font-size + rem;
-}

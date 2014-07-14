@@ -15,6 +15,8 @@ $base-font-size: 18px;
 $base-line-height: 1.65;
 $base-cap-height: 0.53;
 
+$h1-font-size: 120px;
+
 //===============================================
 // HTML TREE
 //===============================================
@@ -31,14 +33,14 @@ body {
   line-height: $base-line-height + em;
   //@include show-baseline();
   >.inner {
-    max-width: em(grid-units-h(30));
+    max-width: grid-units-h(34);
     margin: 0 auto;
   }
 }
 main {
   padding: 0 grid-units-h();
   h1 {
-    @include align-to-baseline(120px, 0, -5);
+    @include align-to-baseline($h1-font-size, 0, -5);
     position: relative;
     font-weight: 500;
     left: -0.075em;
