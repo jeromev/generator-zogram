@@ -11,11 +11,8 @@
 //===============================================
 // SETUP
 //===============================================
-$base-font-size: 18px;
-$base-line-height: 1.65;
+$font-family: 'Fira Sans', Verdana, sans-serif;
 $base-cap-height: 0.53;
-
-$h1-font-size: 120px;
 
 //===============================================
 // HTML TREE
@@ -26,11 +23,10 @@ body {
 }
 body {
   background: $color-background;
-  font-family: 'Fira Sans', Verdana, sans-serif;
+  font-family: $font-family;
   font-weight: 400;
   color: $color-text;
-  font-size: $base-font-size;
-  line-height: $base-line-height + em;
+  @include set-base-font-size(18px);
   //@include show-baseline();
   >.inner {
     max-width: grid-units-h(34);
@@ -40,7 +36,7 @@ body {
 main {
   padding: 0 grid-units-h();
   h1 {
-    @include align-to-baseline($h1-font-size, 0, -5);
+    @include align-to-baseline(120px, 0, -5);
     position: relative;
     font-weight: 500;
     left: -0.075em;
