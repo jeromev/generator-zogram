@@ -14,6 +14,9 @@ $(document).ready(function() {
   // Smooth scroll for internal links
   $.localScroll();
   
+  // remove no-js class
+  html.removeClass('no-js');
+  
   // Lettering.js
   $('> h1', main).lettering();
   
