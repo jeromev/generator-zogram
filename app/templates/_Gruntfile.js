@@ -59,7 +59,10 @@ module.exports = function(grunt) {
         tasks: ['newer:copy:styles', 'autoprefixer']
       },
       assemble: {
-        files: ['<%%= config.app %>/templates/**/*.hbs'],
+        files: [
+          '<%%= config.app %>/templates/**/*.hbs',
+          '<%%= config.content %>/**/*.md'
+        ],
         tasks: ['assemble:server']
       },
       livereload: {
