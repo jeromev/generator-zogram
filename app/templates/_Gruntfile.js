@@ -73,7 +73,7 @@ module.exports = function(grunt) {
           '<%%= config.server %>/{,*/}*.html',
           '<%%= config.server %>/assets/styles/{,*/}*.css',
           '<%= config.server %>/assets/scripts/{,*/}*.js',
-          '<%%= config.app %>/images/{,*/}*'
+          '<%%= config.app %>/graphics/{,*/}*'
         ]
       }
     },
@@ -227,7 +227,7 @@ module.exports = function(grunt) {
           src: [
             '<%%= config.build %>/assets/scripts/{,*/}*.js',
             '<%%= config.build %>/assets/styles/{,*/}*.css',
-            '<%%= config.build %>/assets/images/{,*/}*.*',
+            '<%%= config.build %>/assets/graphics/{,*/}*.*',
             '<%%= config.build %>/assets/fonts/{,*/}*.*',
             '<%%= config.build %>/*.{ico,png}'
           ]
@@ -250,7 +250,7 @@ module.exports = function(grunt) {
       options: {
         assetsDirs: [
           '<%%= config.build %>',
-          '<%%= config.build %>/assets/images'
+          '<%%= config.build %>/assets/graphics'
         ]
       },
       html: ['<%%= config.server %>/{,*/}*.html'],
@@ -262,9 +262,17 @@ module.exports = function(grunt) {
       build: {
         files: [{
           expand: true,
-          cwd: '<%%= config.app %>/images',
+          cwd: '<%%= config.app %>/graphics',
           src: '{,*/}*.{gif,jpeg,jpg,png}',
-          dest: '<%%= config.build %>/images'
+          dest: '<%%= config.build %>/assets/graphics'
+        }]
+      },
+      server: {
+        files: [{
+          expand: true,
+          cwd: '<%%= config.app %>/graphics',
+          src: '{,*/}*.{gif,jpeg,jpg,png}',
+          dest: '<%%= config.server %>/assets/graphics'
         }]
       }
     },
@@ -273,9 +281,17 @@ module.exports = function(grunt) {
       build: {
         files: [{
           expand: true,
-          cwd: '<%%= config.app %>/images',
+          cwd: '<%%= config.app %>/graphics',
           src: '{,*/}*.svg',
-          dest: '<%%= config.build %>/assets/images'
+          dest: '<%%= config.build %>/assets/graphics'
+        }]
+      },
+      server: {
+        files: [{
+          expand: true,
+          cwd: '<%%= config.app %>/graphics',
+          src: '{,*/}*.svg',
+          dest: '<%%= config.server %>/assets/graphics'
         }]
       }
     },
@@ -312,7 +328,7 @@ module.exports = function(grunt) {
           src: [
             '*.{ico,png,txt}',
             '.htaccess',
-            'images/{,*/}*.webp',
+            'graphics/{,*/}*.webp',
             '{,*/}*.html',
             'fonts/{,*/}*.*'
           ]
@@ -338,7 +354,9 @@ module.exports = function(grunt) {
     concurrent: {
       server: [
         'sass:server',
-        'copy:js'
+        'copy:js',
+        'imagemin:server',
+        'svgmin:server'
       ],
       test: [
         'copy:js'
@@ -346,8 +364,8 @@ module.exports = function(grunt) {
       build: [
         'sass:build',
         'copy:js',
-        'imagemin',
-        'svgmin'
+        'imagemin:build',
+        'svgmin:build'
       ]
     },
     
