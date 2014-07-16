@@ -71,8 +71,8 @@ module.exports = function(grunt) {
         },
         files: [
           '<%%= config.server %>/{,*/}*.html',
-          '<%%= config.server %>/styles/{,*/}*.css',
-          '<%= config.server %>/scripts/{,*/}*.js',
+          '<%%= config.server %>/assets/styles/{,*/}*.css',
+          '<%= config.server %>/assets/scripts/{,*/}*.js',
           '<%%= config.app %>/images/{,*/}*'
         ]
       }
@@ -178,7 +178,7 @@ module.exports = function(grunt) {
           expand: true,
           cwd: '<%%= config.app %>/styles',
           src: ['*.{scss,sass}'],
-          dest: '<%%= config.server %>/styles',
+          dest: '<%%= config.server %>/assets/styles',
           ext: '.css'
         }]
       },
@@ -187,7 +187,7 @@ module.exports = function(grunt) {
           expand: true,
           cwd: '<%%= config.app %>/styles',
           src: ['*.{scss,sass}'],
-          dest: '<%%= config.server %>/styles',
+          dest: '<%%= config.server %>/assets/styles',
           ext: '.css'
         }]
       }
@@ -201,9 +201,9 @@ module.exports = function(grunt) {
       build: {
         files: [{
           expand: true,
-          cwd: '<%%= config.server %>/styles/',
+          cwd: '<%%= config.server %>/assets/styles/',
           src: '{,*/}*.css',
-          dest: '<%%= config.server %>/styles/'
+          dest: '<%%= config.server %>/assets/styles/'
         }]
       }
     },
@@ -225,10 +225,10 @@ module.exports = function(grunt) {
       build: {
         files: {
           src: [
-            '<%%= config.build %>/scripts/{,*/}*.js',
-            '<%%= config.build %>/styles/{,*/}*.css',
-            '<%%= config.build %>/images/{,*/}*.*',
-            '<%%= config.build %>/fonts/{,*/}*.*',
+            '<%%= config.build %>/assets/scripts/{,*/}*.js',
+            '<%%= config.build %>/assets/styles/{,*/}*.css',
+            '<%%= config.build %>/assets/images/{,*/}*.*',
+            '<%%= config.build %>/assets/fonts/{,*/}*.*',
             '<%%= config.build %>/*.{ico,png}'
           ]
         }
@@ -250,7 +250,7 @@ module.exports = function(grunt) {
       options: {
         assetsDirs: [
           '<%%= config.build %>',
-          '<%%= config.build %>/images'
+          '<%%= config.build %>/assets/images'
         ]
       },
       html: ['<%%= config.server %>/{,*/}*.html'],
@@ -275,7 +275,7 @@ module.exports = function(grunt) {
           expand: true,
           cwd: '<%%= config.app %>/images',
           src: '{,*/}*.svg',
-          dest: '<%%= config.build %>/images'
+          dest: '<%%= config.build %>/assets/images'
         }]
       }
     },
@@ -322,14 +322,14 @@ module.exports = function(grunt) {
         expand: true,
         dot: true,
         cwd: '<%%= config.app %>/styles',
-        dest: '<%%= config.server %>/styles/',
+        dest: '<%%= config.server %>/assets/styles/',
         src: '{,*/}*.css'
       },
       js: {
         expand: true,
         dot: true,
         cwd: '<%%= config.app %>/scripts',
-        dest: '<%%= config.server %>/scripts/',
+        dest: '<%%= config.server %>/assets/scripts/',
         src: '{,*/}*.js'
       }
     },
