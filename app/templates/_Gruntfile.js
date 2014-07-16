@@ -63,7 +63,7 @@ module.exports = function(grunt) {
           '<%%= config.app %>/templates/**/*.hbs',
           '<%%= config.content %>/**/*.md'
         ],
-        tasks: ['assemble:server']
+        tasks: ['assemble:server', 'wiredep:app']
       },
       livereload: {
         options: {
