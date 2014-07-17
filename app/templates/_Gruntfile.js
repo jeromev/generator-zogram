@@ -53,6 +53,14 @@ module.exports = function(grunt) {
         files: ['<%%= config.app %>/styles/{,*/}*.css'],
         tasks: ['newer:copy:styles', 'autoprefixer']
       },
+      images: {
+        files: ['<%= config.app %>/graphics/{,*/}*.{gif,jpeg,jpg,png}'],
+        tasks: ['imagemin']
+      },
+      svgs: {
+        files: ['<%= config.app %>/graphics/{,*/}*.svg'],
+        tasks: ['svgmin']
+      },
       assemble: {
         files: [
           '<%%= config.app %>/templates/**/*.hbs',
@@ -68,7 +76,7 @@ module.exports = function(grunt) {
           '<%%= config.server %>/{,*/}*.html',
           '<%%= config.server %>/assets/styles/{,*/}*.css',
           '<%= config.server %>/assets/scripts/{,*/}*.js',
-          '<%%= config.app %>/graphics/{,*/}*'
+          '<%= config.server %>/assets/graphics/{,*/}*'
         ]
       }
     },
