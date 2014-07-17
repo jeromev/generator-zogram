@@ -16,13 +16,8 @@ module.exports = function(grunt) {
   // Load grunt tasks automatically
   require('load-grunt-tasks')(grunt);
 
-  // Configurable paths
-  var config = {
-    app: 'app',
-    build: 'build',
-    server: '.tmp',
-    content: 'content'
-  };
+  // Configuration
+  var config = grunt.file.readYAML('config.yml');
 
   // Define the configuration for all the tasks
   grunt.initConfig({
@@ -390,6 +385,18 @@ module.exports = function(grunt) {
         src: ['**/*.hbs'],
         dest: './<%%= config.build %>/'
       }
+    },
+    
+    'sftp-deploy': {
+      prod: {
+        auth: {
+          host: '<%%= config.deployProdHost %>',
+          port: '<%%= config.deployProdPort %>',
+          authKey: 'prod'
+        },
+        src: '<%%= config.build %>',
+        dest: '<%%= config.deployProdDestination %>'
+      }
     }
     
   });
@@ -456,5 +463,12 @@ module.exports = function(grunt) {
     'newer:jshint',
     'test',
     'build'
+  ]);
+  
+  grunt.registerTask('deploy', [
+    'newer:jshint',
+    'test',
+    'build',
+    'sftp-deploy:prod'
   ]);
 };

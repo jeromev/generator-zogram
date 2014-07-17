@@ -58,6 +58,14 @@ module.exports = yeoman.generators.Base.extend({
     this.copy('_editorconfig', '.editorconfig');
   },
   
+  ymlConfig: function() {
+    this.copy('_config.yml', 'config.yml');
+  },
+  
+  ftpPass: function() {
+    this.copy('_ftppass', '.ftppass');
+  },
+  
   content: function() {
     this.mkdir('content');
     this.copy('_content/index.md', 'content/index.md');

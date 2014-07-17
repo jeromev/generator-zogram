@@ -1,0 +1,7 @@
+app: app
+build: build
+server: .tmp
+content: content
+deployProdHost: example.org
+deployProdPort: 22
+deployProdDestination: /
