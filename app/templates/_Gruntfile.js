@@ -401,7 +401,7 @@ module.exports = function(grunt) {
         selector: 'p, section h1, h2, h3, h4, h5, h6',
         space: '&#160;',
         thinSpace: '&#8239;',
-        words: true, 
+        words: true,
         symbols: true,
         units: true,
         numbers: true,
