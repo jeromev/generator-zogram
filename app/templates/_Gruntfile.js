@@ -66,7 +66,7 @@ module.exports = function(grunt) {
           '<%%= config.app %>/templates/**/*.hbs',
           '<%%= config.content %>/**/*.md'
         ],
-        tasks: ['assemble:server', 'wiredep:app']
+        tasks: ['assemble:server', 'wiredep:app', 'raggedast']
       },
       livereload: {
         options: {
@@ -395,6 +395,31 @@ module.exports = function(grunt) {
       }
     },
     
+    // Adjusts the text rag for better readability
+    raggedast: {
+      options: {
+        selector: 'p, section h1, h2, h3, h4, h5, h6',
+        space: '&#160;',
+        thinSpace: '&#8239;',
+        words: true, 
+        symbols: true,
+        units: true,
+        numbers: true,
+        emphasis: true,
+        quotes: true,
+        months: true,
+        orphans: 2,
+        shortWords: 2,
+        limit: 0
+      },
+      server: {
+        expand: true,
+        cwd: '<%= config.server %>',
+        src: ['{,*/}*.html'],
+        dest: '<%= config.server %>',
+      }
+    },
+    
     'sftp-deploy': {
       prod: {
         auth: {
@@ -422,6 +447,7 @@ module.exports = function(grunt) {
     grunt.task.run([
       'clean:server',
       'assemble:server',
+      'raggedast',
       'wiredep',
       'concurrent:server',
       'autoprefixer',
@@ -454,6 +480,7 @@ module.exports = function(grunt) {
   grunt.registerTask('build', [
     'clean:build',
     'assemble:server',
+    'raggedast',
     'wiredep',
     'useminPrepare',
     'concurrent:build',
@@ -474,8 +501,6 @@ module.exports = function(grunt) {
   ]);
   
   grunt.registerTask('deploy', [
-    'newer:jshint',
-    'test',
     'build',
     'sftp-deploy:prod'
   ]);
