@@ -43,6 +43,14 @@
   &:before {
     box-sizing: border-box;
   }
+  // reset default cursors
+  &:not(a) {
+    cursor: default;
+  }
+}
+a,
+a * {
+  cursor: pointer !important;
 }
 html, body {
   font-smoothing: subpixel-antialiased;
