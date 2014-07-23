@@ -501,7 +501,21 @@ module.exports = function(grunt) {
   ]);
   
   grunt.registerTask('deploy', [
-    'build',
+    'clean:build',
+    'assemble:server',
+    'raggedast',
+    'wiredep',
+    'useminPrepare',
+    'concurrent:build',
+    'autoprefixer',
+    'concat',
+    'cssmin',
+    'uglify',
+    'copy:build',
+//     'rev',
+    'usemin',
+    'htmlmin',
     'sftp-deploy:prod'
   ]);
+  
 };
