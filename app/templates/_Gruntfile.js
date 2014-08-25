@@ -64,7 +64,7 @@ module.exports = function(grunt) {
       assemble: {
         files: [
           '<%%= config.app %>/templates/**/*.hbs',
-          '<%%= config.content %>/**/*.md'
+          '<%%= config.content %>/{,*/}*.md'
         ],
         tasks: ['assemble:server', 'wiredep:app', 'raggedast']
       },
