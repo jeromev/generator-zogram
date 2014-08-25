@@ -54,11 +54,11 @@ module.exports = function(grunt) {
         tasks: ['newer:copy:styles', 'autoprefixer']
       },
       images: {
-        files: ['<%= config.app %>/graphics/{,*/}*.{gif,jpeg,jpg,png}'],
+        files: ['<%%= config.app %>/graphics/{,*/}*.{gif,jpeg,jpg,png}'],
         tasks: ['imagemin']
       },
       svgs: {
-        files: ['<%= config.app %>/graphics/{,*/}*.svg'],
+        files: ['<%%= config.app %>/graphics/{,*/}*.svg'],
         tasks: ['svgmin']
       },
       assemble: {
@@ -75,8 +75,8 @@ module.exports = function(grunt) {
         files: [
           '<%%= config.server %>/{,*/}*.html',
           '<%%= config.server %>/assets/styles/{,*/}*.css',
-          '<%= config.server %>/assets/scripts/{,*/}*.js',
-          '<%= config.server %>/assets/graphics/{,*/}*'
+          '<%%= config.server %>/assets/scripts/{,*/}*.js',
+          '<%%= config.server %>/assets/graphics/{,*/}*'
         ]
       }
     },
@@ -351,6 +351,31 @@ module.exports = function(grunt) {
         dest: '<%%= config.server %>/assets/scripts/',
         src: '{,*/}*.js'
       }
+    },    
+    
+    // Adjusts the text rag for better readability
+    raggedast: {
+      options: {
+        selector: 'p, section h1, h2, h3, h4, h5, h6',
+        space: '&#160;',
+        thinSpace: '&#8239;',
+        words: true,
+        symbols: true,
+        units: true,
+        numbers: true,
+        emphasis: true,
+        quotes: true,
+        months: true,
+        orphans: 2,
+        shortWords: 2,
+        limit: 0
+      },
+      server: {
+        expand: true,
+        cwd: '<%%= config.server %>',
+        src: ['{,*/}*.html'],
+        dest: '<%%= config.server %>',
+      }
     },
 
     // Run some tasks in parallel to speed up build process
@@ -392,31 +417,6 @@ module.exports = function(grunt) {
         expand: true,
         src: ['**/*.hbs'],
         dest: './<%%= config.build %>/'
-      }
-    },
-    
-    // Adjusts the text rag for better readability
-    raggedast: {
-      options: {
-        selector: 'p, section h1, h2, h3, h4, h5, h6',
-        space: '&#160;',
-        thinSpace: '&#8239;',
-        words: true,
-        symbols: true,
-        units: true,
-        numbers: true,
-        emphasis: true,
-        quotes: true,
-        months: true,
-        orphans: 2,
-        shortWords: 2,
-        limit: 0
-      },
-      server: {
-        expand: true,
-        cwd: '<%= config.server %>',
-        src: ['{,*/}*.html'],
-        dest: '<%= config.server %>',
       }
     },
     
