@@ -76,7 +76,8 @@ module.exports = function(grunt) {
           '<%%= config.server %>/{,*/}*.html',
           '<%%= config.server %>/assets/styles/{,*/}*.css',
           '<%%= config.server %>/assets/scripts/{,*/}*.js',
-          '<%%= config.server %>/assets/graphics/{,*/}*'
+          '<%%= config.server %>/assets/graphics/{,*/}*',
+          '<%%= config.server %>/assets/fonts/{,*/}*'
         ]
       }
     },
@@ -350,6 +351,20 @@ module.exports = function(grunt) {
         cwd: '<%%= config.app %>/scripts',
         dest: '<%%= config.server %>/assets/scripts/',
         src: '{,*/}*.js'
+      },
+      fontsServer: {
+        expand: true,
+        dot: true,
+        cwd: '<%%= config.app %>/fonts',
+        dest: '<%%= config.server %>/assets/fonts/',
+        src: '{,*/}*.{eot,svg,ttf,woff}'
+      },
+      fontsBuild: {
+        expand: true,
+        dot: true,
+        cwd: '<%%= config.app %>/fonts',
+        dest: '<%%= config.build %>/assets/fonts/',
+        src: '{,*/}*.{eot,svg,ttf,woff}'
       }
     },    
     
@@ -383,6 +398,7 @@ module.exports = function(grunt) {
       server: [
         'sass:server',
         'copy:js',
+        'copy:fontsServer',
         'imagemin:server',
         'svgmin:server'
       ],
@@ -392,6 +408,7 @@ module.exports = function(grunt) {
       build: [
         'sass:build',
         'copy:js',
+        'copy:fontsBuild',
         'imagemin:build',
         'svgmin:build'
       ]
