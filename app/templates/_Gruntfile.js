@@ -216,7 +216,7 @@ module.exports = function(grunt) {
     wiredep: {
       app: {
         ignorePath: /^<%%= config.app %>\/|\.\.\//,
-        src: ['<%%= config.server %>/{,*/}*.html']
+        src: ['<%%= config.server %>/**/*.html']
       },
       sass: {
         src: ['<%%= config.app %>/styles/{,*/}*.{scss,sass}'],
