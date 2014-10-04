@@ -73,7 +73,7 @@ module.exports = function(grunt) {
           livereload: '<%%= connect.options.livereload %>'
         },
         files: [
-          '<%%= config.server %>/{,*/}*.html',
+          '<%%= config.server %>/**/*.html',
           '<%%= config.server %>/assets/styles/{,*/}*.css',
           '<%%= config.server %>/assets/scripts/{,*/}*.js',
           '<%%= config.server %>/assets/graphics/{,*/}*',
@@ -257,7 +257,7 @@ module.exports = function(grunt) {
           '<%%= config.build %>/assets/graphics'
         ]
       },
-      html: ['<%%= config.server %>/{,*/}*.html'],
+      html: ['<%%= config.server %>/**/*.html'],
       css: ['<%%= config.build %>/styles/{,*/}*.css']
     },
 
@@ -315,7 +315,7 @@ module.exports = function(grunt) {
         files: [{
           expand: true,
           cwd: '<%%= config.server %>',
-          src: '{,*/}*.html',
+          src: '**/*.html',
           dest: '<%%= config.build %>'
         }]
       }
@@ -388,7 +388,7 @@ module.exports = function(grunt) {
       server: {
         expand: true,
         cwd: '<%%= config.server %>',
-        src: ['{,*/}*.html'],
+        src: ['**/*.html'],
         dest: '<%%= config.server %>',
       }
     },
