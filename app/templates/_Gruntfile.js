@@ -366,7 +366,7 @@ module.exports = function(grunt) {
         dest: '<%%= config.build %>/assets/fonts/',
         src: '{,*/}*.{eot,svg,ttf,woff}'
       }
-    },    
+    },
     
     // Adjusts the text rag for better readability
     raggedast: {
