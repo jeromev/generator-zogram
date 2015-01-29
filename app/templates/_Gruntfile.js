@@ -357,14 +357,14 @@ module.exports = function(grunt) {
         dot: true,
         cwd: '<%%= config.app %>/fonts',
         dest: '<%%= config.server %>/assets/fonts/',
-        src: '{,*/}*.{eot,svg,ttf,woff}'
+        src: '{,*/}*.{eot,svg,ttf,woff,css}'
       },
       fontsBuild: {
         expand: true,
         dot: true,
         cwd: '<%%= config.app %>/fonts',
         dest: '<%%= config.build %>/assets/fonts/',
-        src: '{,*/}*.{eot,svg,ttf,woff}'
+        src: '{,*/}*.{eot,svg,ttf,woff,css}'
       }
     },
     
