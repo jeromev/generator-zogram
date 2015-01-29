@@ -61,6 +61,10 @@ module.exports = function(grunt) {
         files: ['<%%= config.app %>/graphics/{,*/}*.svg'],
         tasks: ['svgmin']
       },
+      fonts: {
+        files: ['<%%= config.app %>/fonts/{,*/}*.{eot,svg,ttf,woff,woff2,css}'],
+        tasks: ['copy:fontsServer']
+      },
       assemble: {
         files: [
           '<%%= config.app %>/templates/**/*.hbs',
