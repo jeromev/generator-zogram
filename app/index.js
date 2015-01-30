@@ -43,8 +43,7 @@ module.exports = yeoman.generators.Base.extend({
         'grid.scss': "*",
         'jquery': "~1.11.0",
         'jquery.scrollTo': "~1.4.12",
-        'jquery.localScroll': "~1.3.5",
-        'letteringjs': "~0.6.1"
+        'jquery.localScroll': "~1.3.5"
       }
     };
     this.write('bower.json', JSON.stringify(bower, null, 2));
