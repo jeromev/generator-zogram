@@ -17,7 +17,4 @@ $(document).ready(function() {
   // remove no-js class
   html.removeClass('no-js');
   
-  // Lettering.js
-  $('> h1', main).lettering();
-  
 });
