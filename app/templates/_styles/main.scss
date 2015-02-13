@@ -42,17 +42,6 @@ main {
     left: -0.075em;
     letter-spacing: -0.02em;
     text-transform: lowercase;
-    .char1 {
-      margin-right: 0.01em;
-    }
-    .char2 {
-      margin-right: 0.007em;
-    }
-    .char4 {
-      transform: rotate(10deg) translateY(0.01em);
-      display: inline-block;
-      margin-left: 0.05em;
-    }
   }
   p {
     @include align-to-baseline();
