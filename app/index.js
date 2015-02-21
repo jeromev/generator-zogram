@@ -40,8 +40,8 @@ module.exports = yeoman.generators.Base.extend({
       dependencies: {
         'normalize-css': "~3.0.1",
         'normalize-opentype.css': "~0.1.2",
-        'grid.scss': "*",
-        'jquery': "~1.11.0",
+        'grid.scss': "~0.1.9",
+        'jquery': "~2.1.3",
         'jquery.scrollTo': "~1.4.12",
         'jquery.localScroll': "~1.3.5"
       }
