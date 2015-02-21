@@ -70,7 +70,7 @@ module.exports = function(grunt) {
           '<%%= config.app %>/templates/**/*.hbs',
           '<%%= config.content %>/{,*/}*.md'
         ],
-        tasks: ['assemble:server', 'wiredep:app', 'raggedast']
+        tasks: ['assemble:server', 'wiredep:app', 'cdnify:server', 'raggedast']
       },
       livereload: {
         options: {
@@ -395,6 +395,16 @@ module.exports = function(grunt) {
         dest: '<%%= config.server %>',
       }
     },
+    
+    // replace refs to resources on the Google CDN
+    cdnify: {
+      options: {
+        cdn: require('google-cdn-data')
+      },
+      server: {
+        html: ['<%%= config.server %>**/*.html']
+      }
+    },
 
     // Run some tasks in parallel to speed up build process
     concurrent: {
@@ -470,6 +480,7 @@ module.exports = function(grunt) {
       'raggedast',
       'wiredep',
       'concurrent:server',
+      'cdnify:server',
       'autoprefixer',
       'connect:livereload',
       'watch'
@@ -504,6 +515,7 @@ module.exports = function(grunt) {
     'wiredep',
     'useminPrepare',
     'concurrent:build',
+    'cdnify:server',
     'autoprefixer',
     'concat',
     'cssmin',
@@ -527,6 +539,7 @@ module.exports = function(grunt) {
     'wiredep',
     'useminPrepare',
     'concurrent:build',
+    'cdnify:server',
     'autoprefixer',
     'concat',
     'cssmin',
