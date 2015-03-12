@@ -61,13 +61,9 @@ module.exports = function(grunt) {
         files: ['<%%= config.app %>/graphics/{,*/}*.svg'],
         tasks: ['svgmin']
       },
-      fonts: {
-        files: ['<%%= config.app %>/fonts/{,*/}*.{eot,svg,ttf,woff,woff2,css}'],
-        tasks: ['copy:fontsServer']
-      },
       assemble: {
         files: [
-          '<%%= config.app %>/templates/**/*.hbs',
+          '<%%= config.app %>/templates/**/*.{hbs,html}',
           '<%%= config.content %>/{,*/}*.md'
         ],
         tasks: ['assemble:server', 'wiredep:app', 'cdnify:server', 'raggedast']
@@ -328,18 +324,60 @@ module.exports = function(grunt) {
     // Copies remaining files to places other tasks can use
     copy: {
       build: {
-        files: [{
-          expand: true,
-          dot: true,
-          cwd: '<%%= config.app %>',
-          dest: '<%%= config.build %>',
-          src: [
-            '*.{ico,png,txt}',
-            '.htaccess',
-            'graphics/{,*/}*.webp',
-            '{,*/}*.html'
-          ]
-        }]
+        files: [
+          {
+            expand: true,
+            dot: true,
+            cwd: '<%%= config.app %>',
+            dest: '<%%= config.build %>',
+            src: [
+              '*.{ico,png,txt}',
+              '.htaccess',
+              'graphics/{,*/}*.webp',
+              '{,*/}*.html'
+            ]
+          },
+          // static html files
+          {
+            expand: true,
+            dot: true,
+            cwd: '<%%= config.app %>/html/',
+            dest: '<%%= config.build %>',
+            src: [
+              '**'
+            ]
+          },
+          // fonts
+          {
+            expand: true,
+            dot: true,
+            cwd: '<%%= config.app %>/fonts',
+            dest: '<%%= config.build %>/assets/fonts/',
+            src: '{,*/}*.{eot,svg,ttf,woff,woff2,css}'
+          }
+        ]
+      },
+      server: {
+        files: [
+          // static html files
+          {
+            expand: true,
+            dot: true,
+            cwd: '<%%= config.app %>/html/',
+            dest: '<%%= config.server %>',
+            src: [
+              '**'
+            ]
+          },
+          // fonts
+          {
+            expand: true,
+            dot: true,
+            cwd: '<%%= config.app %>/fonts',
+            dest: '<%%= config.server %>/assets/fonts/',
+            src: '{,*/}*.{eot,svg,ttf,woff,woff2,css}'
+          }
+        ]
       },
       styles: {
         expand: true,
@@ -354,20 +392,6 @@ module.exports = function(grunt) {
         cwd: '<%%= config.app %>/scripts',
         dest: '<%%= config.server %>/assets/scripts/',
         src: '{,*/}*.js'
-      },
-      fontsServer: {
-        expand: true,
-        dot: true,
-        cwd: '<%%= config.app %>/fonts',
-        dest: '<%%= config.server %>/assets/fonts/',
-        src: '{,*/}*.{eot,svg,ttf,woff,woff2,css}'
-      },
-      fontsBuild: {
-        expand: true,
-        dot: true,
-        cwd: '<%%= config.app %>/fonts',
-        dest: '<%%= config.build %>/assets/fonts/',
-        src: '{,*/}*.{eot,svg,ttf,woff,woff2,css}'
       }
     },
     
@@ -410,8 +434,6 @@ module.exports = function(grunt) {
     concurrent: {
       server: [
         'sass:server',
-        'copy:js',
-        'copy:fontsServer',
         'imagemin:server',
         'svgmin:server'
       ],
@@ -420,8 +442,6 @@ module.exports = function(grunt) {
       ],
       build: [
         'sass:build',
-        'copy:js',
-        'copy:fontsBuild',
         'imagemin:build',
         'svgmin:build'
       ]
@@ -439,13 +459,13 @@ module.exports = function(grunt) {
       server: {
         cwd: './<%%= config.app %>/templates/pages/',
         expand: true,
-        src: ['**/*.hbs'],
+        src: ['**/*.{hbs,html}'],
         dest: './<%%= config.server %>/'
       },
       build: {
         cwd: './<%%= config.app %>/templates/pages/',
         expand: true,
-        src: ['**/*.hbs'],
+        src: ['**/*.{hbs,html}'],
         dest: './<%%= config.build %>/'
       }
     },
@@ -480,6 +500,8 @@ module.exports = function(grunt) {
       'raggedast',
       'wiredep',
       'concurrent:server',
+      'copy:js',
+      'copy:server',
       'cdnify:server',
       'autoprefixer',
       'connect:livereload',
@@ -515,6 +537,7 @@ module.exports = function(grunt) {
     'wiredep',
     'useminPrepare',
     'concurrent:build',
+    'copy:js',
     'cdnify:server',
     'autoprefixer',
     'concat',
@@ -539,6 +562,7 @@ module.exports = function(grunt) {
     'wiredep',
     'useminPrepare',
     'concurrent:build',
+    'copy:js',
     'cdnify:server',
     'autoprefixer',
     'concat',
