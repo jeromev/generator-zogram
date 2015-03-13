@@ -17,6 +17,10 @@ $base-cap-height: 0.53;
 //===============================================
 // HTML TREE
 //===============================================
+html {
+  @include set-base-font-size(18px);
+}
+
 html, 
 body {
   height: 100%;
@@ -26,15 +30,14 @@ body {
   font-family: $font-family;
   font-weight: 400;
   color: $color-text;
-  @include set-base-font-size(18px);
   //@include show-baseline();
   >.inner {
-    max-width: grid-units-h(34);
+    max-width: guh(34);
     margin: 0 auto;
   }
 }
 main {
-  padding: 0 grid-units-h();
+  padding: 0 guh();
   h1 {
     @include align-to-baseline(120px, 0, -5);
     position: relative;
