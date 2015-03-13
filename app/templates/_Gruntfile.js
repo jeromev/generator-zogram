@@ -54,11 +54,11 @@ module.exports = function(grunt) {
         tasks: ['newer:copy:styles', 'autoprefixer']
       },
       images: {
-        files: ['<%%= config.app %>/graphics/{,*/}*.{gif,jpeg,jpg,png}'],
+        files: ['<%%= config.app %>/media/{,*/}*.{gif,jpeg,jpg,png}'],
         tasks: ['imagemin']
       },
       svgs: {
-        files: ['<%%= config.app %>/graphics/{,*/}*.svg'],
+        files: ['<%%= config.app %>/media/{,*/}*.svg'],
         tasks: ['svgmin']
       },
       assemble: {
@@ -76,7 +76,7 @@ module.exports = function(grunt) {
           '<%%= config.server %>/**/*.html',
           '<%%= config.server %>/assets/styles/{,*/}*.css',
           '<%%= config.server %>/assets/scripts/{,*/}*.js',
-          '<%%= config.server %>/assets/graphics/{,*/}*',
+          '<%%= config.server %>/assets/media/{,*/}*',
           '<%%= config.server %>/assets/fonts/{,*/}*'
         ]
       }
@@ -231,7 +231,7 @@ module.exports = function(grunt) {
           src: [
             '<%%= config.build %>/assets/scripts/{,*/}*.js',
             '<%%= config.build %>/assets/styles/{,*/}*.css',
-            '<%%= config.build %>/assets/graphics/{,*/}*.*',
+            '<%%= config.build %>/assets/media/{,*/}*.*',
             '<%%= config.build %>/assets/fonts/{,*/}*.*',
             '<%%= config.build %>/*.{ico,png}'
           ]
@@ -254,7 +254,7 @@ module.exports = function(grunt) {
       options: {
         assetsDirs: [
           '<%%= config.build %>',
-          '<%%= config.build %>/assets/graphics'
+          '<%%= config.build %>/assets/media'
         ]
       },
       html: ['<%%= config.server %>/**/*.html'],
@@ -266,17 +266,17 @@ module.exports = function(grunt) {
       build: {
         files: [{
           expand: true,
-          cwd: '<%%= config.app %>/graphics',
+          cwd: '<%%= config.app %>/media',
           src: '{,*/}*.{gif,jpeg,jpg,png}',
-          dest: '<%%= config.build %>/assets/graphics'
+          dest: '<%%= config.build %>/assets/media'
         }]
       },
       server: {
         files: [{
           expand: true,
-          cwd: '<%%= config.app %>/graphics',
+          cwd: '<%%= config.app %>/media',
           src: '{,*/}*.{gif,jpeg,jpg,png}',
-          dest: '<%%= config.server %>/assets/graphics'
+          dest: '<%%= config.server %>/assets/media'
         }]
       }
     },
@@ -285,17 +285,17 @@ module.exports = function(grunt) {
       build: {
         files: [{
           expand: true,
-          cwd: '<%%= config.app %>/graphics',
+          cwd: '<%%= config.app %>/media',
           src: '{,*/}*.svg',
-          dest: '<%%= config.build %>/assets/graphics'
+          dest: '<%%= config.build %>/assets/media'
         }]
       },
       server: {
         files: [{
           expand: true,
-          cwd: '<%%= config.app %>/graphics',
+          cwd: '<%%= config.app %>/media',
           src: '{,*/}*.svg',
-          dest: '<%%= config.server %>/assets/graphics'
+          dest: '<%%= config.server %>/assets/media'
         }]
       }
     },
@@ -333,7 +333,7 @@ module.exports = function(grunt) {
             src: [
               '*.{ico,png,txt}',
               '.htaccess',
-              'graphics/{,*/}*.webp',
+              'media/{,*/}*.webp',
               '{,*/}*.html'
             ]
           },

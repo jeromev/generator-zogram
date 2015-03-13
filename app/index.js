@@ -86,7 +86,7 @@ module.exports = yeoman.generators.Base.extend({
     this.mkdir('app/scripts');
     this.mkdir('app/styles');
     this.mkdir('app/fonts');
-    this.mkdir('app/graphics');
+    this.mkdir('app/media');
     this.mkdir('app/templates');
     this.mkdir('app/templates/layouts');
     this.mkdir('app/templates/partials');
