@@ -7,31 +7,7 @@
 //===============================================
 // MIXINS
 //===============================================
-@mixin clearfix() {
-  *zoom:1;    
-  &:before, 
-  &:after {
-    content:"";
-    display:table;
-  }
-  &:after {
-    clear:both;
-  }
-}
-@mixin hide() {
-  position: absolute;
-  height: 1px;
-  width: 1px;
-  overflow: hidden;
-  clip: rect(1px, 1px, 1px, 1px);
-}
-@mixin hide-off($position: static) {
-  position: $position;
-  clip: auto;
-  height: auto;
-  width: auto;
-  overflow: auto;
-}
+
 //===============================================
 // RULES
 //===============================================
@@ -79,4 +55,48 @@ a {
 }
 img {
   max-width: 100%;
+}
+// use small-caps for accronyms
+abbr,abbr[title] {
+//   font-size: 0.68em;
+//   font-weight: bolder;
+  cursor: help;
+  line-height: 1;
+  border: none;
+}
+pre, code {
+  font-family: "source-code-pro", "Source Code Pro", monospace;
+  white-space: pre;
+  cursor: text;
+}
+code {
+  font-size: 0.95em;
+}
+dt {
+  margin: guv(1) 0 0;
+  font-weight: bolder;
+}
+dd {
+  margin-left: guh(1);
+}
+dl {
+  margin: 0 0 guv(1) 0;
+}
+hr {
+  margin: guv(4) 0 0;
+}
+.math {
+  white-space: nowrap;
+}
+figure {
+  margin: 0;
+  figcaption {
+    font-style: italic;
+    text-align: right;
+    color: rgb(120,120,120);
+  }
+}
+.hide,
+.hidden {
+  @include hide();
 }
