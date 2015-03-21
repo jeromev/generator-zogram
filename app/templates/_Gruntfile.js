@@ -63,8 +63,8 @@ module.exports = function(grunt) {
       },
       assemble: {
         files: [
-          '<%%= config.app %>/templates/{,*/}*.{hbs,html}',
-          '<%%= config.content %>/{,*/}*.md'
+          '<%%= config.app %>/templates/**/*.{hbs,html}',
+          '<%%= config.content %>/**/*.md'
         ],
         tasks: ['assemble:server', 'wiredep:app', 'cdnify:server', 'raggedast']
       },
