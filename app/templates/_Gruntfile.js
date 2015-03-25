@@ -376,6 +376,14 @@ module.exports = function(grunt) {
             cwd: '<%%= config.app %>/fonts',
             dest: '<%%= config.server %>/assets/fonts/',
             src: '{,*/}*.{eot,svg,ttf,woff,woff2,css}'
+          },
+          // remaining media
+          {
+            expand: true,
+            dot: true,
+            cwd: '<%%= config.app %>/media',
+            dest: '<%%= config.server %>/assets/media/',
+            src: '{,*/}*.!({gif,jpeg,jpg,png,svg})'
           }
         ]
       },
@@ -394,7 +402,7 @@ module.exports = function(grunt) {
         src: '{,*/}*.js'
       }
     },
-    
+
     // Adjusts the text rag for better readability
     raggedast: {
       options: {
@@ -419,7 +427,7 @@ module.exports = function(grunt) {
         dest: '<%%= config.server %>',
       }
     },
-    
+
     // replace refs to resources on the Google CDN
     cdnify: {
       options: {
@@ -446,7 +454,7 @@ module.exports = function(grunt) {
         'svgmin:build'
       ]
     },
-    
+
     assemble: {
       options: {
         flatten: true,
@@ -469,7 +477,7 @@ module.exports = function(grunt) {
         dest: './<%%= config.build %>/'
       }
     },
-    
+
     'sftp-deploy': {
       prod: {
         auth: {
@@ -481,9 +489,9 @@ module.exports = function(grunt) {
         dest: '<%%= config.deployProdDestination %>'
       }
     }
-    
+
   });
-  
+
   grunt.loadNpmTasks('assemble');
 
   grunt.registerTask('serve', 'start the server and preview your app, --allow-remote for remote access', function (target) {
@@ -554,7 +562,7 @@ module.exports = function(grunt) {
     'test',
     'build'
   ]);
-  
+
   grunt.registerTask('deploy', [
     'clean:build',
     'assemble:server',
@@ -574,5 +582,5 @@ module.exports = function(grunt) {
     'htmlmin',
     'sftp-deploy:prod'
   ]);
-  
+
 };
